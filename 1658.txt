@@ -1,0 +1,20 @@
+class Solution {
+    public int minOperations(int[] nums, int x) {
+        int sum=0;
+        for (int num:nums)sum+=num;
+        
+        int maxlen=-1;
+        int currsum=0;
+        
+        for(int l=0,r=0;r<nums.length;r++){
+            currsum+=nums[r];
+            while(currsum>sum-x && l<=r){
+                currsum-=nums[l];
+                l++;
+            }
+            if(currsum==sum-x)maxlen=maxlen> r-l+1? maxlen:r-l+1;
+        }
+        return maxlen == -1 ? -1 : nums.length - maxlen;
+        
+    }
+}
