@@ -1,0 +1,17 @@
+----------------------------py----------------------------------
+
+class Solution:
+    def leastBricks(self, wall: List[List[int]]) -> int:
+        length=sum(wall[0])
+        height=len(wall)
+        
+        ddd={0:0}
+        
+        for i in wall:
+            adds=0
+            for j in range(len(i)-1):
+                adds+=i[j]
+                ddd[adds]=ddd.get(adds,0)+1
+        
+        items=[(val,key) for key,val in ddd.items()]
+        return height-max(items)[0]
