@@ -1,0 +1,22 @@
+-------------------------java------------------------------
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> q = new PriorityQueue<>((a,b)->b-a);
+        
+        for(int num: nums){
+            q.add(num);
+        }
+        
+        while(k-- > 1){
+            q.remove();
+        }
+        return q.remove();
+    }
+}
+
+
+--------------------------py------------------------------------
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        return nums[-k]
