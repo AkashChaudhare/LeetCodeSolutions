@@ -1,0 +1,13 @@
+class Solution:
+    def isPossible(self, target: List[int]) -> bool:
+        if(max(target) == 1):
+            return True
+        while(max(target)!=1):
+            total = sum(target)
+            maxel = max(target)
+            total-=maxel
+            indmax = target.index(maxel)
+            if(total >= maxel or total == 0 or (maxel % total==0  and total!=1)):
+                return False
+            target[indmax] = maxel % total
+        return True
