@@ -1,0 +1,11 @@
+class Solution:
+    def busyStudent(self, startTime: List[int], endTime: List[int], query: int) -> int:
+        
+        nerds=0
+        for i in range(len(startTime)):
+            if query>=startTime[i] and query<=endTime[i]:
+                nerds+=1
+        return nerds
+            
+            
+            
