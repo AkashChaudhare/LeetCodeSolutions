@@ -1,0 +1,17 @@
+class Solution {
+    public List<Integer> addToArrayForm(int[] A, int cur) {
+        int N = A.length;
+       
+        List<Integer> ans = new ArrayList();
+
+        while (--N >= 0 || cur > 0) {
+            if (N >= 0)
+                cur += A[N];
+            ans.add(cur % 10);
+            cur /= 10;
+        }
+
+        Collections.reverse(ans);
+        return ans;
+    }
+}
