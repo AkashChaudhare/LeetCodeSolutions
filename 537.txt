@@ -1,0 +1,13 @@
+class Solution:
+    def complexNumberMultiply(self, num1: str, num2: str) -> str:
+        a=num1.split('+')
+        c=num2.split('+')
+        a,b=eval(a[0]),eval(a[1][:-1])
+        c,d=eval(c[0]),eval(c[1][:-1])
+        
+        #print(a,b,c,d)
+        
+        a,b=a*c-b*d,a*d+b*c
+        
+        
+        return f"{a}+{b}i"
