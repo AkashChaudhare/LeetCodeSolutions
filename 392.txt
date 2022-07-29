@@ -1,3 +1,7 @@
+
+------------------------py------------------------------
+
+
 class Solution:
     def isSubsequence(self, small: str, big: str) -> bool:
         
@@ -12,3 +16,24 @@ class Solution:
             return True
         else:
             return False
+            
+            
+            
+            
+------------------------------java-----------------------------
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int a=0,b=0;
+        
+        while(a<s.length() && b<t.length()){
+            if(s.charAt(a)==t.charAt(b)){
+                a++;b++;
+            }
+            else{
+                b++;
+            }
+        }
+        if(a==s.length())return true;
+        return false;
+    }
+}
