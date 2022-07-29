@@ -22,19 +22,15 @@ class Solution {
                         break;
                     }
                 }
-
                 else if (hm.get(w) != p) {
                     check = false;
                     break;
                 }
             }
-
             if (check == true) {
                 ans.add(word);
             }
         }
-
         return ans;
-
     }
 }
