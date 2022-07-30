@@ -1,0 +1,36 @@
+class Solution {
+    public List<String> wordSubsets(String[] A, String[] B) {
+        
+    List<String> ans=new ArrayList();
+        
+    int[] bmax=new int[26];
+    for(String b:B){
+        int[] bcount=count(b);
+        for(int i=0;i<26;i++){
+            bmax[i]=Math.max(bmax[i],bcount[i]);
+        }
+    }
+        
+    for(int i=0;i<A.length;i++){
+        int[] acount=count(A[i]);
+        boolean check=true;
+        for(int j=0;j<26;j++){
+            if(bmax[j]>acount[j]){
+                check=false;
+                break;
+            }
+        
+        }
+        if(check==true)ans.add(A[i]);
+    }
+        return ans;
+        
+    }
+    public int[] count(String S){
+        int[] ans=new int[26];
+        for(char c:S.toCharArray()){
+            ans[c-'a']++;
+        }
+        return ans;
+    }
+}
