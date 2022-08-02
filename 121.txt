@@ -1,0 +1,17 @@
+class Solution {
+    public int maxProfit(int[] p) {
+        int l=0,r=1,maxprof=0;
+        
+        while(r<p.length){
+            if(p[l]<p[r]){
+                maxprof=p[r]-p[l]>maxprof?p[r]-p[l]:maxprof;
+                r++;
+            }
+            else{
+                l=r;
+                r++;
+            }
+        }
+        return maxprof;
+    }
+}
