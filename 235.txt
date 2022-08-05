@@ -9,26 +9,16 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        
-        if (p.val < q.val):
-            lower,higher = p,q
-        else:
-            lower,higher = q,p
-        
-        while root !=None:
-            #print(root.val,"\n","-"*20)
-            #print(root.val,lower.val,higher.val)
-            if (root.val > lower.val) and (root.val < higher.val):
-                #print("ad")
-                return root
-            if root.val > higher.val:
-                root = root.left
-            elif root.val < lower.val:
-                root = root.right
-            elif root.val == higher.val:
-                return higher
-            elif root.val == lower.val:
-                return lower
+        temp=root
+        while(temp!=None):
+            print(temp.val)
+            if(temp.val>p.val) and (temp.val>q.val):
+                temp=temp.left
+            elif(temp.val<p.val) and (temp.val<q.val):
+                temp=temp.right
+            else:
+                break
+        return temp
                 
         ---------------------------------------java---------------------------------------------
         /**
