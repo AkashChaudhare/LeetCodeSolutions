@@ -1,0 +1,70 @@
+******************************java***************************************
+class MyQueue {
+
+
+    public void switchStack(Stack<Integer> a,Stack<Integer> b){
+        while(!a.empty()){
+            b.push(a.pop());
+        }
+    }
+
+    Stack<Integer> pushStack=new Stack<Integer>();
+        Stack<Integer> popStack=new Stack<Integer>();
+        Boolean inPushStack=true;
+
+    public MyQueue() {
+    }
+
+    
+    
+    public void push(int x) {
+        if(!inPushStack){
+            switchStack(popStack,pushStack);
+            inPushStack=true;
+        }  
+        pushStack.push(x);        
+    }
+    
+    public int pop() {
+        if(inPushStack){
+            switchStack(pushStack,popStack);
+            inPushStack=false;
+        }
+        if(popStack.empty()){
+            return 0;
+        }
+        else{
+            return popStack.pop();
+        }
+    }
+    
+    public int peek() {
+        if(inPushStack){
+            switchStack(pushStack,popStack);
+            inPushStack=false;
+        }
+        if(popStack.empty()){
+            return 0;
+        }
+        else{
+            return popStack.peek();
+        }
+    }
+    
+    public boolean empty() {
+        if(!inPushStack){
+            switchStack(popStack,pushStack);
+            inPushStack=true;
+        }
+        return pushStack.empty();
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */
