@@ -1,0 +1,21 @@
+*************java*******************
+class Solution {
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        int[] no_of_rooms= new int[rooms.size()];
+        no_of_rooms[0]=1;
+        helper(rooms.get(0),rooms,no_of_rooms);
+        for(int room:no_of_rooms){
+            if(room==0)return false;
+        }
+        return true;
+    }
+    public void helper(List<Integer> keys,List<List<Integer>> rooms,int[] no_of_rooms){
+        for(int key:keys){
+            if(no_of_rooms[key]==0){
+                no_of_rooms[key]=1;
+            helper(rooms.get(key),rooms,no_of_rooms);
+            };
+            
+        }
+    }
+}
