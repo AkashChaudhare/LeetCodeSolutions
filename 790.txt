@@ -1,0 +1,33 @@
+*************using concept of sequence and series********************
+
+class Solution:
+    def numTilings(self, n: int) -> int:
+        arr=[0,1,2,5]
+
+        while(len(arr)<=n):
+            arr.append(arr[-1]*2+arr[-3])
+            #print(arr)
+        return arr[n]%1000000007
+
+
+************************dp***********************************
+
+class Solution:
+    def numTilings(self, n: int) -> int:
+        cache={}
+
+        def fill(n,full):
+            if full and n <= 2: return n if n > 0 else 1 
+            if not full and n <= 2: return 0 if n == 1 else 1
+
+            if (n,full) in cache:
+                return cache[(n,full)]
+            
+            if full:
+                cache[(n,full)]=(fill(n-1,full)+fill(n-2,full)+2*fill(n-1,not full))%1000000007
+                return cache[(n,full)]
+            else:
+                cache[(n,full)]=(fill(n-1,full)+fill(n-2,not full))%1000000007  
+                return cache[(n,full)]
+        
+        return fill(n,True)
