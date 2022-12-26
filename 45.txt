@@ -1,0 +1,16 @@
+******************py******************************
+
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        jumps=[1001]*len(nums)
+        jumps[-1]=0
+        goal=len(nums)-1
+
+        for i in range(len(nums)-2,-1,-1):
+            if(goal-i<=nums[i]):
+                jumps[i]=1
+            else:
+                #print(i,jumps[i+1:1+i+nums[i]])
+                jumps[i]= min(jumps[i+1:1+i+nums[i]]) + 1 if jumps[i+1:1+i+nums[i]] else 1001
+        #print(jumps)
+        return jumps[0]
