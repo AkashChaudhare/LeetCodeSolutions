@@ -1,0 +1,17 @@
+*******************************java****************************
+class Solution {
+    public boolean digitCount(String num) {
+        int [] arr=new int[10];
+        for (char digit:num.toCharArray()){
+            int a=Character.getNumericValue(digit);
+            arr[a]+=1;
+        }
+        
+        for(int i=0;i<num.length();i++){
+            if(arr[i]!=Character.getNumericValue(num.toCharArray()[i])){
+                return false;
+            }
+        }
+        return true;
+    }
+}
