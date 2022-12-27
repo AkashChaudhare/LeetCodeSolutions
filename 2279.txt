@@ -1,0 +1,15 @@
+***************py***********************
+
+class Solution:
+    def maximumBags(self, capacity: List[int], rocks: List[int], additionalRocks: int) -> int:
+        final=list(zip(capacity,rocks))
+        final.sort(key= lambda x: x[0]-x[1])
+        count=0
+        for c,r in final:
+            if c-r<=additionalRocks:
+                additionalRocks-=(c-r)
+                count+=1
+
+
+        #print(final)
+        return count
