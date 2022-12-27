@@ -1,0 +1,41 @@
+*************************py**************************
+
+class Solution:
+    def rearrangeCharacters(self, s: str, target: str) -> int:
+        char_s=[0]*26
+        for i in s:
+            char_s[ord(i)-ord('a')]+=1
+
+        char_t=[0]*26
+        for i in target:
+            char_t[ord(i)-ord('a')]+=1
+
+        minn=101
+        for c in target:
+            minn=min(minn,char_s[ord(c)-ord('a')]//char_t[ord(c)-ord('a')])
+        return minn
+        
+***********************java********************************
+
+
+class Solution {
+    public int rearrangeCharacters(String s, String target) {
+        int[] char_s=new int[26];
+        for(char i:s.toCharArray()){
+            char_s[i-'a']+=1;
+        }
+            
+        int[] char_t=new int[26];
+        for(char i:target.toCharArray()){
+            char_t[i-'a']+=1;
+        }
+           
+
+        int minn=101;
+        for(char c: target.toCharArray()){
+            minn=Math.min(minn,char_s[c-'a']/char_t[c-'a']);
+        }
+            
+        return minn;
+    }
+}
