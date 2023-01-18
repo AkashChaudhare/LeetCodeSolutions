@@ -1,0 +1,94 @@
+****************************************java1**************************************
+class MyCircularQueue {
+    int size;
+    int a[];
+    int front=-1,rear=-1;
+
+    public MyCircularQueue(int k) {
+        this.size=k;
+        this.a=new int[size];
+    }
+    
+    public boolean enQueue(int value) {
+        if(isFull())return false;
+        if(front==-1)front=0;
+        rear=(rear+1)%size;
+        a[rear]=value;
+        return true;
+    }
+    
+    public boolean deQueue() {
+        if(isEmpty())return false;
+
+        if(front==rear){
+            front=-1;
+            rear=-1;
+        }
+        else{
+            front=(front+1)%size;
+        }
+        return true;
+    }
+    
+    public int Front() {
+        if(isEmpty())return -1;
+        return a[front];
+    }
+    
+    public int Rear() {
+        if(isEmpty())return -1;
+        return a[rear];
+    }
+    
+    public boolean isEmpty() {
+        return (front==-1);
+    }
+    
+    public boolean isFull() {
+        return (rear+1)%size==front;
+    }
+}
+
+****************************************java2**************************************
+class MyCircularQueue {
+    int size;
+    int a[];
+    int front=0,rear=0;
+
+    public MyCircularQueue(int k) {
+        this.size=k+1;
+        this.a=new int[k+1];
+    }
+    
+    public boolean enQueue(int value) {
+        if(isFull())return false;
+        rear=(rear+1)%size;
+        a[rear]=value;
+        return true;
+    }
+    
+    public boolean deQueue() {
+        if(isEmpty())return false;
+        front=(front+1)%size;
+        return true;
+    }
+    
+    public int Front() {
+        if(isEmpty())return -1;
+        return a[(front+1)%size];
+    }
+    
+    public int Rear() {
+        if(isEmpty())return -1;
+        return a[rear];
+    }
+    
+    public boolean isEmpty() {
+        return (front==rear);
+    }
+    
+    public boolean isFull() {
+        return (rear+1)%size==front;
+    }
+}
+
