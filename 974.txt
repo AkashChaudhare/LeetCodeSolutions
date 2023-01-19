@@ -1,0 +1,15 @@
+****************************py****************************************
+
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        ddd=defaultdict(int)
+        ddd[0]=1
+
+        res,prefix=0,0
+        for num in nums:
+            prefix+=num
+            remainder=prefix%k
+            res+=ddd[remainder]
+            ddd[remainder]+=1
+        #print(ddd)
+        return res
