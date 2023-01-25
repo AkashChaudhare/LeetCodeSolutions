@@ -1,0 +1,19 @@
+********************py*************************
+
+class Solution:
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+
+        truster=[0]*n
+
+        trustee=[0]*n
+        
+        for a,b in trust:
+            truster[a-1]+=1
+            trustee[b-1]+=1
+
+        for i, val in enumerate(trustee):
+            if (n-1)==val and truster[i]==0:
+                return i+1
+
+            
+        return -1
