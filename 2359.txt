@@ -1,0 +1,29 @@
+***************************************py***********************************
+
+class Solution:
+    def closestMeetingNode(self, edges: List[int], node1: int, node2: int) -> int:
+        def bfs(node):
+            reachable=defaultdict(int)
+            reachable[node]=0
+            curr=node
+            steps = 0
+            while edges[curr] != -1:
+                curr = edges[curr]
+                steps += 1
+                if curr in reachable:
+                    break
+                reachable[curr] = steps
+            return reachable
+        reachable1 = bfs(node1)
+        reachable2 = bfs(node2)
+        #print(reachable1)
+        cost=inf
+        index=-1
+        for node in reachable1.keys():
+            if node in reachable2:
+                if cost>max(reachable1[node],reachable2[node]):
+                    cost=max(reachable1[node],reachable2[node])
+                    index=node
+                elif cost==max(reachable1[node],reachable2[node]):
+                    index=min(node,index)
+        return index
