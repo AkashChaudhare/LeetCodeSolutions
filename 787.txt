@@ -1,0 +1,25 @@
+**********************************py***************************************
+
+class Solution:
+    def findCheapestPrice(self, n, flights, src, dst, k) -> int:
+        graph=collections.defaultdict(dict)
+
+        for f in flights:
+            graph[f[0]][f[1]]=f[2]
+
+        pq=[(0,src,k)]
+
+        vis=[-1]*n
+
+        print(graph)
+        while pq:
+            curr_cost, curr_node, curr_steps = heapq.heappop(pq)
+            if curr_node == dst:
+                return curr_cost
+            if vis[curr_node] >= curr_steps:
+                continue
+            vis[curr_node] = curr_steps
+            for next_node, cost in graph[curr_node].items():
+                heapq.heappush(pq, (curr_cost+cost, next_node, curr_steps-1))
+        return -1
+
